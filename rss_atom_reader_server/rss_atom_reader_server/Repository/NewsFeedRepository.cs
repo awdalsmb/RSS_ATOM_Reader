@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using rss_atom_reader_server.DataBaseModels;
 using rss_atom_reader_server.IRepository;
@@ -73,9 +74,9 @@ namespace rss_atom_reader_server.Repository
             throw new NotImplementedException();
         }
 
-        public Task<DeleteResult> RemoveAll()
+        public async Task<DeleteResult> RemoveAll()
         {
-            throw new NotImplementedException();
+            return await _context.NewsFeeds.DeleteManyAsync(new BsonDocument());
         }
     }
 }
