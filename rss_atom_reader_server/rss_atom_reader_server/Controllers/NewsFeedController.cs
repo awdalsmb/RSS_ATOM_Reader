@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using rss_atom_reader_server.IRepository;
 using rss_atom_reader_server.Models;
 
@@ -18,11 +19,17 @@ namespace rss_atom_reader_server.Controllers
         {
             _newsFeedRepository = newsFeedRepository;
         }
-        // GET api/[controller]
+        // GET api/newsfeed
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public Task<string> Get()
         {
-            return this.Get();
+            return this.GetFeed();
+        }
+
+        private async Task<string> GetFeed()
+        {
+            var feed = await _newsFeedRepository.Get();
+            return JsonConvert.SerializeObject(feed);
         }
 
         // POST api/[controller]
@@ -33,8 +40,8 @@ namespace rss_atom_reader_server.Controllers
             return "";
         }
 
-        // DELETE api/[controller]/5
-        [HttpDelete("{id}")]
+        // DELETE api/[controller]
+        [HttpDelete]
         public async Task<string> Delete()
         {
             await _newsFeedRepository.RemoveAll();
