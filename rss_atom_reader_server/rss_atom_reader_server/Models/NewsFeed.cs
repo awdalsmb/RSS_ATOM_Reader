@@ -7,7 +7,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace rss_atom_reader_server.Models
 {
-    public class Feeder
+    public class NewsFeed
     {
         [BsonId]
         public ObjectId Id { get; set; }
