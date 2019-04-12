@@ -62,9 +62,6 @@ namespace rss_atom_reader_server.Repository
 
         }
 
-
-        
-
         public async Task Add(NewsFeed feed)
         {
             MappingXml("https://fakty.interia.pl/feed");
