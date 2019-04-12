@@ -19,6 +19,11 @@ namespace rss_atom_reader_server.Repository
         private readonly ObjectContext _context = null;
         List<NewsFeed> feed = new List<NewsFeed>();
 
+        public NewsFeedRepository(IOptions<Settings> settings)
+        {
+            _context = new ObjectContext(settings);
+        }
+
         public void MappingXml(string RssFeedUrl)
         {
             try
@@ -58,10 +63,7 @@ namespace rss_atom_reader_server.Repository
         }
 
 
-        public NewsFeedRepository(IOptions<Settings> settings)
-        {
-            _context = new ObjectContext(settings);
-        }
+        
 
         public async Task Add(NewsFeed feed)
         {
@@ -69,9 +71,9 @@ namespace rss_atom_reader_server.Repository
             await _context.NewsFeeds.InsertManyAsync(this.feed);
         }
 
-        public Task<IEnumerable<NewsFeed>> Get()
+        public async Task<IEnumerable<NewsFeed>> Get()
         {
-            throw new NotImplementedException();
+            return await _context.NewsFeeds.Find(x => true).ToListAsync();
         }
 
         public async Task<DeleteResult> RemoveAll()
