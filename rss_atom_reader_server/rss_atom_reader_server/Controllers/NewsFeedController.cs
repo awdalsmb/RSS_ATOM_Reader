@@ -34,10 +34,9 @@ namespace rss_atom_reader_server.Controllers
 
         // POST api/[controller]
         [HttpPost]
-        public async Task<string> Post([FromBody] NewsFeed newsFeed)
+        public async void Post()
         {
-            await _newsFeedRepository.Add(newsFeed);
-            return "";
+            await _newsFeedRepository.Add();
         }
 
         // DELETE api/[controller]
