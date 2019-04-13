@@ -15,4 +15,9 @@ export default {
 </script>
 
 <style lang="scss">
+#app {
+    background: url('../src/assets/background.jpg') no-repeat;
+    background-size:cover;
+
+}
 </style>
