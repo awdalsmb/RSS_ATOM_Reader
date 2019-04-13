@@ -10,7 +10,7 @@ namespace rss_atom_reader_server.IRepository
     public interface INewsFeedRepository
     {
         Task<IEnumerable<NewsFeed>> Get();
-        Task Add(NewsFeed feed);
+        Task Add();
         Task<DeleteResult> RemoveAll();
     }
 }

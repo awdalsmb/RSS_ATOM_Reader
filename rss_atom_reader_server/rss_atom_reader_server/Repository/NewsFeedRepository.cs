@@ -62,7 +62,7 @@ namespace rss_atom_reader_server.Repository
 
         }
 
-        public async Task Add(NewsFeed feed)
+        public async Task Add()
         {
             MappingXml("https://fakty.interia.pl/feed");
             await _context.NewsFeeds.InsertManyAsync(this.feed);
