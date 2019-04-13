@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using rss_atom_reader_server.DataBaseModels;
+using rss_atom_reader_server.IRepository;
+using rss_atom_reader_server.Repository;
 
 namespace rss_atom_reader_server
 {
@@ -16,15 +12,17 @@ namespace rss_atom_reader_server
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration =(IConfigurationRoot) configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc();
+            services.Configure<Settings>(o => { o.iConfigurationRoot = Configuration; });
+            services.AddTransient<INewsFeedRepository, NewsFeedRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
