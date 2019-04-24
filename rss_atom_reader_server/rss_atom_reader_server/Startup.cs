@@ -53,6 +53,7 @@ namespace rss_atom_reader_server
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
