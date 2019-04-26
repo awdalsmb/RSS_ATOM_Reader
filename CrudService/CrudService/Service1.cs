@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,21 +14,31 @@ using System.Timers;
 namespace CrudService
 {
     public partial class Service1: ServiceBase {  
-        Timer timer = new Timer(); // name space(using System.Timers;)  
+        Timer timer = new Timer(); // name space(using System.Timers;)
+        HttpClient client = new HttpClient();
         public Service1() {  
             InitializeComponent();  
         }  
         protected override void OnStart(string[] args) {  
             WriteToFile("Service is started at " + DateTime.Now);  
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);  
-            timer.Interval = 5000; //number in milisecinds  
+            timer.Interval = 30000; //number in milisecinds  
             timer.Enabled = true;  
         }  
         protected override void OnStop() {  
             WriteToFile("Service is stopped at " + DateTime.Now);  
         }  
-        private void OnElapsedTime(object source, ElapsedEventArgs e) {  
-            WriteToFile("Service is recall at " + DateTime.Now);  
+        private async void OnElapsedTime(object source, ElapsedEventArgs e) {  
+            WriteToFile("Service is recall at " + DateTime.Now);
+
+            await client.DeleteAsync("http://localhost:52511/api/newsfeed/");
+
+            await client.PostAsync("http://localhost:52511/api/newsfeed/", null);
+
+
+            await client.GetStringAsync("http://localhost:52511/api/newsfeed/");
+
+
         }  
         public void WriteToFile(string Message) {  
             string path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";  
