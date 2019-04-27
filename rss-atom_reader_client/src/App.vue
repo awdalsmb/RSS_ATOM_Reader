@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">News</a>
       <button
         class="navbar-toggler"
