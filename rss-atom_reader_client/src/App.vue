@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container-fluid">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">News</a>
+      <a class="navbar-brand mb-1" href="#">News</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -42,5 +42,10 @@ export default {
     background-size:cover;
     padding: 0 0 0 0;
 
+}
+
+nav a {
+  width: 50px;
+  height: 40px;
 }
 </style>
