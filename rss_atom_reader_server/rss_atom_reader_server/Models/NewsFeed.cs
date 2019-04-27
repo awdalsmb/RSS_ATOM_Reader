@@ -16,6 +16,7 @@ namespace rss_atom_reader_server.Models
         public string Link { get; set; }
         public string PublishDate { get; set; }
         public string Description { get; set; }
+        public string Image { get; set; }
         public string Category { get; set; }
     }
 }
