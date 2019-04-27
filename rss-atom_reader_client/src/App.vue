@@ -37,11 +37,13 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-    background: url('../src/assets/background.jpg') no-repeat;
-    background-size:cover;
-    padding: 0 0 0 0;
 
+body {
+  background: url('../src/assets/background.jpg') no-repeat;
+  background-size:cover;
+}
+#app {
+  padding: 0 0 0 0;
 }
 
 nav a {

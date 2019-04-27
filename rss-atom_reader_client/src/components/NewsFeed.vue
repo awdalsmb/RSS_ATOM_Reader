@@ -1,14 +1,10 @@
 <template>
   <div class="NewsFeed container" id="mainContainer">
-      <div class="container text-center" id="selectCategory">
-          <select>
-            <option value="Category 1">Category 1</option>
-            <option value="Category 2">Category 2</option>
-            <option value="Category 3">Category 3</option>
-          </select>
+      <div class="container text-center mt-5" id="selectCategory">
+          <input v-model="filtered" type="search" class="form-control" placeholder="Find by category">
       </div>
       <div class="row">
-        <div v-for="item in NewsFeed" :key="item.Id" class="col-sm-6 col-md-4 col-lg-3" id="simpleColumn">
+        <div v-for="item in filterNews" :key="item.Id" class="col-sm-6 col-md-4 col-lg-3" id="simpleColumn">
           <div class="card" style="width: 100%; height:100%;" id="simpleCard">
             <div class="imageInside">
               <img :src="item.Image" class="card-img-top" alt="" id="itemImage">
@@ -30,6 +26,7 @@ export default {
 
   data() {
     return {
+      filtered:'',
       NewsFeed: [],
     }
   },
@@ -40,6 +37,17 @@ export default {
         .then(response => response.json())
         .then(result => this.NewsFeed = result)
     },
+  },
+
+  computed: {
+  filterNews () {
+      const search = this.filtered.toLowerCase().trim();
+
+      if (!search) return this.NewsFeed;
+
+       return this.NewsFeed.filter(c => c.Category.toLowerCase().indexOf(search) > -1);
+  }
+
   },
 
   created: function () {
