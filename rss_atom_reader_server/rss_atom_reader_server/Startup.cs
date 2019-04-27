@@ -29,6 +29,15 @@ namespace rss_atom_reader_server
 
             services.AddMvc();
             services.Configure<Settings>(o => { o.iConfigurationRoot = Configuration; });
+
+            services.AddTransient<INewsFeedRepository, NewsFeedRepository>();
+
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+                                                                   .AllowAnyMethod()
+                                                                    .AllowAnyHeader()));
+
+            services.AddMvc();
+
             services.AddTransient<INewsFeedRepository, NewsFeedRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -53,6 +62,18 @@ namespace rss_atom_reader_server
                 app.UseDeveloperExceptionPage();
             }
 
+            else
+            {
+                app.UseHsts();
+            }
+
+            app.UseCors(builder =>
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+            );
+
+            app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
         }
