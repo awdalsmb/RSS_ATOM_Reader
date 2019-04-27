@@ -11,7 +11,7 @@
         <div v-for="item in NewsFeed" :key="item.Id" class="col-sm-6 col-md-4 col-lg-3" id="simpleColumn">
           <div class="card" style="width: 100%; height:100%;" id="simpleCard">
             <div class="imageInside">
-              <img src="../assets/logo.png" class="card-img-top" alt="" id="itemImage">
+              <img :src="item.Image" class="card-img-top" alt="" id="itemImage">
           </div>
           <div class="card-body" id="simpleCard">
           <h5 class="card-title">{{item.Title}}</h5>
@@ -68,10 +68,10 @@ background-color: rgba(0,0,0,.4);
 
 #itemImage {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80px;
-  height: 80px;
+  // margin-left: auto;
+  // margin-right: auto;
+  width: 100%;
+  height: 100%;
 }
 
 #selectCategory {
