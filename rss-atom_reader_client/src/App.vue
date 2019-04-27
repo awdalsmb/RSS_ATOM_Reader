@@ -1,8 +1,30 @@
 <template>
-  <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">News</router-link>
-    </div> -->
+  <div id="app" class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">News</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <router-link to="/" class="nav-link">
+              Home
+              <span class="sr-only">(current)</span>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <router-view/>
   </div>
 </template>
@@ -18,6 +40,7 @@ export default {
 #app {
     background: url('../src/assets/background.jpg') no-repeat;
     background-size:cover;
+    padding: 0 0 0 0;
 
 }
 </style>
