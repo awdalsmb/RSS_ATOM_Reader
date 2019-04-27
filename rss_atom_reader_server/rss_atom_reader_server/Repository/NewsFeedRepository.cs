@@ -36,7 +36,8 @@ namespace rss_atom_reader_server.Repository
                         title = x.Element("title").Value,
                         link = x.Element("link").Value,
                         pubDate = x.Element("pubDate").Value,
-                        description = x.Element("description").Value
+                        description = x.Element("description").Value,
+                        category = x.Element("category").Value
                     });
 
                 if (news != null)
@@ -48,7 +49,8 @@ namespace rss_atom_reader_server.Repository
                             Title = item.title,
                             Link = item.link,
                             Description = item.description,
-                            PublishDate = DateTime.Parse(item.pubDate)
+                            PublishDate = item.pubDate,
+                            Category = item.category
                         };
 
                         feed.Add(n);
