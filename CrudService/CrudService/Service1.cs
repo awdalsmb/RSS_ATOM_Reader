@@ -22,7 +22,7 @@ namespace CrudService
         protected override void OnStart(string[] args) {  
             WriteToFile("Service is started at " + DateTime.Now);  
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);  
-            timer.Interval = 30000; //number in milisecinds  
+            timer.Interval = 310000; //number in milisecinds  
             timer.Enabled = true;  
         }  
         protected override void OnStop() {  
