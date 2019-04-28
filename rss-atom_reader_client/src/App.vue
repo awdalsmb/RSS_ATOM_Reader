@@ -36,11 +36,11 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 body {
-  background: url('../src/assets/background.jpg') no-repeat;
-  background-size:cover;
+  // background: url('../src/assets/background.jpg') no-repeat;
+  // background-size:cover;
 }
 #app {
   padding: 0 0 0 0;

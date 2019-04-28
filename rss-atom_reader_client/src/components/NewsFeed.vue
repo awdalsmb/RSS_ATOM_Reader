@@ -10,7 +10,7 @@
         class="col-sm-6 col-md-4 col-lg-3"
         id="simpleColumn"
       >
-        <div class="card" style="width: 100%; height:100%;" id="simpleCard">
+        <div class="card" style="height:100%;" id="simpleCard">
           <div class="imageInside">
             <img :src="item.Image" class="card-img-top" alt id="itemImage">
           </div>
@@ -40,7 +40,7 @@ export default {
   methods: {
     fetchNewsFeed() {
       this.$http
-        .get("http://localhost:52511/api/newsfeed")
+        .get("http://localhost:5000/api/newsfeed")
         .then(response => response.json())
         .then(result => (this.NewsFeed = result));
     }
@@ -102,6 +102,7 @@ export default {
 #simpleCard {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 
 .card-footer {
@@ -135,6 +136,6 @@ h6 {
 }
 
 p {
-  font-size: 13px;
+  font-size: 12px;
 }
 </style>
