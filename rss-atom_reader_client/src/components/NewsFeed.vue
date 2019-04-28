@@ -16,8 +16,8 @@
           </div>
           <div class="card-body" id="simpleCard">
             <h6 class="card-title">{{item.Title}}</h6>
-            <a :href="item.Link" class="btn btn-outline-dark mt-1 mb-1">Read more</a>
-                <p class="card-text">{{item.Description}}</p>
+                <p class="card-text mt-4">{{item.Description}}</p>
+                <a :href="item.Link" class="btn btn-outline-dark mt-1 mb-1">Read more</a>
           </div>
           <div class="card-footer border-dark">{{item.PublishDate}}</div>
         </div>
