@@ -86,12 +86,15 @@ namespace rss_atom_reader_server.Repository
                 {
                     foreach (var item in news)
                     {
+                        var dateTime = DateTime.Parse(item.pubDate);
+                        var str = dateTime.ToString("dd/MM/yyyy HH:mm");
+
                         NewsFeed n = new NewsFeed
                         {
                             Title = item.title,
                             Link = item.link,
                             Description = item.description,
-                            PublishDate = item.pubDate,
+                            PublishDate = str,
                             Image = item.image,
                             Category = item.category
                         };
