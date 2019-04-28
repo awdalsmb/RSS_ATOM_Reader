@@ -20,7 +20,14 @@ namespace CrudService
             InitializeComponent();  
         }  
         protected override void OnStart(string[] args) {  
-            WriteToFile("Service is started at " + DateTime.Now);  
+            WriteToFile("Service is started at " + DateTime.Now);
+            client.DeleteAsync("http://localhost:5000/api/newsfeed/");
+            WriteToFile("deleting content in database " + DateTime.Now);
+            client.PostAsync("http://localhost:5000/api/newsfeed/", null);
+            WriteToFile("Making Post procedure " + DateTime.Now);
+            client.GetStringAsync("http://localhost:5000/api/newsfeed/");
+            WriteToFile("Making Get procedure " + DateTime.Now);
+
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);  
             timer.Interval = 310000; //number in milisecinds  
             timer.Enabled = true;  
@@ -31,12 +38,9 @@ namespace CrudService
         private async void OnElapsedTime(object source, ElapsedEventArgs e) {  
             WriteToFile("Service is recall at " + DateTime.Now);
 
-            await client.DeleteAsync("http://localhost:52511/api/newsfeed/");
-
-            await client.PostAsync("http://localhost:52511/api/newsfeed/", null);
-
-
-            await client.GetStringAsync("http://localhost:52511/api/newsfeed/");
+            await client.DeleteAsync("http://localhost:5000/api/newsfeed/");
+            await client.PostAsync("http://localhost:5000/api/newsfeed/", null);
+            await client.GetStringAsync("http://localhost:5000/api/newsfeed/");
 
 
         }  
